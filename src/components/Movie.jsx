@@ -37,12 +37,12 @@ const Movie = ({ movie, deleteMovie, role }) => {
 
       {role === "ROLE_ADMIN" && (
         <td className="text-right px-6 py-4 whitespace-nowrap font-medium text-sm">
-          <button
+          {/* <button
             onClick={(e, movieName) => editMovie(e, movie.movieName)}
             className="mr-4 text-indigo-600 hover:text-indigo-800 px-4 hover:cursor-pointer"
           >
             Edit
-          </button>
+          </button> */}
           <button
             onClick={handleDelete}
             className="ml-4 text-orange-600 hover:text-orange-800 hover:cursor-pointer"

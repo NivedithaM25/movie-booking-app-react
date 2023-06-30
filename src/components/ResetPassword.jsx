@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import MovieService from "../services/MovieService";
 
-const Login = () => {
+const ResetPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -20,29 +20,18 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await MovieService.login(cred)
+    const response = await MovieService.resetPassword(cred, cred.loginId)
       .then((response) => {
-        sessionStorage.setItem("token", response.data.accessToken);
-        sessionStorage.setItem("userType", response.data.roles);
-        if (url != null) {
-          navigate(url, {
-            state: {
-              movie: location.state && location.state.movie,
-              index: location.state && location.state.index,
-            },
-          });
-        } else {
-          navigate("/", { state: { loginFlag: true } });
-        }
+        navigate("/login", { state: { loginFlag: false } });
       })
       .catch((error) => {
-        setLoginError("Enter a valid UserName or Password!");
+        setLoginError("Enter valid UserName!");
       });
   };
 
   return (
     <div className="max-w-md mx-auto my-auto">
-      <h2 className="text-4xl font-bold mb-4 mt-8">Login</h2>
+      <h2 className="text-4xl font-bold mb-4 mt-8">Reset Password</h2>
       <p className="text-red-400">{loginError}</p>
       <form>
         <div className="items-center justify-center h-14 w-full my-4">
@@ -59,10 +48,10 @@ const Login = () => {
         </div>
         <div className="items-center justify-center h-14 w-full my-4">
           <label className="block mt-8 text-gray-800 text-sm font-semibold">
-            Password
+            New Password
           </label>
           <input
-            type="password"
+            type="Password"
             name="password"
             value={cred.password}
             onChange={(e) => handleChange(e)}
@@ -70,31 +59,15 @@ const Login = () => {
           ></input>
         </div>
 
-        <button
-          type="button"
-          onClick={() => navigate("/register")}
-          className="mt-4 text-black hover:text-blue-900 hover:text-lg font-semibold"
-        >
-          New User ? Register here
-        </button>
-
-        <button
-          type="button"
-          onClick={() => navigate("/reset-password")}
-          className="mt-4 text-black hover:text-blue-900 hover:text-lg font-semibold"
-        >
-          Forgot Password ?
-        </button>
-
         <div className="items-center justify-center h-14 w-full my-4 space-x-4 pt-4">
           <button
             onClick={handleLogin}
             className="rounded mr-4 text-white font-semibold bg-green-600 hover:bg-green-800 py-2 px-6"
           >
-            Login
+            Reset
           </button>
           <button
-            onClick={() => navigate("/movieList")}
+            onClick={() => navigate("/login")}
             className="rounded text-white font-semibold bg-red-400 hover:bg-red-700 py-2 px-6"
           >
             Back
@@ -105,4 +78,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;

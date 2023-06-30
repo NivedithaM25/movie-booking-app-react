@@ -13,6 +13,10 @@ class MovieService {
     return axios.post(MOVIE_API_BASE_URL + '/register', register);
   }
 
+  resetPassword(credentials,loginId) {
+    return axios.put(MOVIE_API_BASE_URL + "/"+loginId+ '/forgot', credentials);
+  }
+
   saveMovie(movie) {
     return axios.post(MOVIE_API_BASE_URL + '/add', movie, {
       headers: {

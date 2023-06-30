@@ -100,12 +100,14 @@ const TheaterList = () => {
                 </td>
                 <td className="py-3 px-6 text-center"> {movie.ticketStatus}</td>
                 <td className="py-3 px-6 text-center">
-                  <button
-                    onClick={(e) => bookTicket(e, index, movie)}
-                    className="btn btn-info text-indigo-600 hover:text-indigo-800 hover:cursor-pointer"
-                  >
-                    Book ticket
-                  </button>
+                  {movie.noOfTicketsAvailable > 0 && (
+                    <button
+                      onClick={(e) => bookTicket(e, index, movie)}
+                      className="btn btn-info text-indigo-600 hover:text-indigo-800 hover:cursor-pointer"
+                    >
+                      Book ticket
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

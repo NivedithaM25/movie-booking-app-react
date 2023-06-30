@@ -8,6 +8,7 @@ import TheaterList from "./components/TheaterList";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import BookTicket from "./components/BookTicket";
+import ResetPassword from "./components/ResetPassword";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/movieList" element={<MovieList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
+          <Route path="/reset-password" element={<ResetPassword/>} />
           <Route path="/theater-list" element={<TheaterList />} />
           <Route path="/book-ticket" element={<BookTicket />} />
           <Route path="/add-movie" element={<AddNewMovie />} />
